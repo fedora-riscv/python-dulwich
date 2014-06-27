@@ -14,6 +14,7 @@ Version:        0.9.6
 Release:        2%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
+Group:          Development/Libraries
 License:        GPLv2+ or ASL 2.0
 URL:            http://samba.org/~jelmer/dulwich/
 Source0:        https://pypi.python.org/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
