@@ -4,8 +4,10 @@
 
 %global srcname dulwich
 
-%filter_provides_in %{python_sitearch}
+%{?filter_setup:
+%filter_provides_in %{python_sitearch}.*\.so$
 %filter_setup
+}
 
 Name:           python-%{srcname}
 Version:        0.9.6
