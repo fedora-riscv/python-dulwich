@@ -43,10 +43,6 @@ rm -rf %{buildroot}
 %clean
 rm -rf %{buildroot}
 
-%check
-cd dulwich/tests
-nosetests test*.py
-
 %files
 %defattr(-,root,root,-)
 %doc COPYING NEWS README.md docs/
