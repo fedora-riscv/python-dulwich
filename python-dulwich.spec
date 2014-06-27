@@ -30,10 +30,10 @@ Mrs. Git live in the Monty Python sketch.
 rm -rf %{srcname}.egg-info
 
 %build
-CFLAGS="%{optflags}" %{__python2} setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%{__python} setup.py install --skip-build --root %{buildroot}
 
 #%check
 #cd dulwich/tests
@@ -43,8 +43,8 @@ CFLAGS="%{optflags}" %{__python2} setup.py build
 %doc COPYING NEWS README.md docs/
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
-%{python2_sitearch}/%{srcname}*
-%exclude %{python2_sitearch}/%{srcname}/tests*
+%{python_sitearch}/%{srcname}*
+%exclude %{python_sitearch}/%{srcname}/tests*
 
 %changelog
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.6-2
