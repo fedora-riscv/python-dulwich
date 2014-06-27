@@ -1,3 +1,7 @@
+%if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
+%{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
+%endif
+
 %global srcname dulwich
 
 %filter_provides_in %{python_sitearch}
@@ -11,6 +15,7 @@ Summary:        A python implementation of the Git file formats and protocols
 License:        GPLv2+ or ASL 2.0
 URL:            http://samba.org/~jelmer/dulwich/
 Source0:        https://pypi.python.org/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
@@ -30,21 +35,26 @@ Mrs. Git live in the Monty Python sketch.
 rm -rf %{srcname}.egg-info
 
 %build
-CFLAGS="%{optflags}" %{__python2} setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+rm -rf %{buildroot}
+%{__python} setup.py install --skip-build --root %{buildroot}
 
-#%check
-#cd dulwich/tests
-#nosetests test*.py
+%clean
+rm -rf %{buildroot}
+
+%check
+cd dulwich/tests
+nosetests test*.py
 
 %files
+%defattr(-,root,root,-)
 %doc COPYING NEWS README.md docs/
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
-%{python2_sitearch}/%{srcname}*
-%exclude %{python2_sitearch}/%{srcname}/tests*
+%{python_sitearch}/%{srcname}*
+%exclude %{python_sitearch}/%{srcname}/tests*
 
 %changelog
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.6-2
