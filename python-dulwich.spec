@@ -24,10 +24,6 @@ BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
 
-%if 0%{?rhel} < 7 || 0%{?fedora} < 14
-BuildRequires:  python-unittest2
-%endif
-
 %description
 Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
