@@ -21,7 +21,7 @@ Source0:        https://pypi.python.org/packages/source/d/%{srcname}/%{srcname}-
 BuildRequires:  python-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
-BuildRequires:  python-sphinx
+#BuildRequires:  python-sphinx
 
 %if 0%{?rhel} < 7 || 0%{?fedora} < 14
 BuildRequires:  python-unittest2
@@ -38,24 +38,24 @@ rm -rf %{srcname}.egg-info
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
-pushd docs
+#pushd docs
 # Not using {smp_flags} as sphinx fails with it from time to time
-make html
-popd
+#make html
+#popd
 
 %install
 %{__python} setup.py install --skip-build --root %{buildroot}
 # Remove extra copy of text docs
-rm -rf docs/build/html/_sources
-rm -f docs/build/html/{.buildinfo,objects.inv}
-rm -rf %{buildroot}%{python_sitearch}/docs/tutorial/
+#rm -rf docs/build/html/_sources
+#rm -f docs/build/html/{.buildinfo,objects.inv}
+#rm -rf %{buildroot}%{python_sitearch}/docs/tutorial/
 
 #%check
 #cd dulwich/tests
 #nosetests test*.py
 
 %files
-%doc AUTHORS COPYING HACKING NEWS README.md docs/build/html
+%doc AUTHORS COPYING HACKING NEWS README.md
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 %{python_sitearch}/%{srcname}*
