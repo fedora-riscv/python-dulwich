@@ -4,17 +4,18 @@
 %filter_setup
 
 Name:           python-%{srcname}
-Version:        0.9.6
-Release:        2%{?dist}
+Version:        0.10.0
+Release:        1%{?dist}
 Summary:        A python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
 URL:            http://samba.org/~jelmer/dulwich/
 Source0:        https://pypi.python.org/packages/source/d/%{srcname}/%{srcname}-%{version}.tar.gz
 
-BuildRequires:  python2-devel
+BuildRequires:  python-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-nose
+BuildRequires:  python-sphinx
 
 %if 0%{?rhel} < 7 || 0%{?fedora} < 14
 BuildRequires:  python-unittest2
@@ -34,19 +35,44 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__python} setup.py install --skip-build --root %{buildroot}
+CFLAGS="%{optflags}" %{__python2} setup.py build
+pushd docs
+# Not using {smp_flags} as sphinx fails with it from time to time
+make html
+popd
+
+%install
+%{__python} setup.py install --skip-build --root %{buildroot}
+# Remove extra copy of text docs
+rm -rf docs/build/html/_sources
+rm -f docs/build/html/{.buildinfo,objects.inv}
+rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
 
 #%check
 #cd dulwich/tests
 #nosetests test*.py
 
 %files
-%doc COPYING NEWS README.md docs/
+%doc AUTHORS COPYING HACKING NEWS README.md docs/build/html
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 %{python_sitearch}/%{srcname}*
 %exclude %{python_sitearch}/%{srcname}/tests*
 
 %changelog
+* Mon Mar 23 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.10.0-1
+- Fix for CVE-2014-9706 (rhbz#1204889, rhbz#1204890, and rhbz#1204891)
+- Update to new upstream version 0.10.0
+
+* Mon Mar 23 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.9-1
+- Update to new upstream version 0.9.9
+
+* Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.7-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+
+* Fri Jun 27 2014 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.7-1
+- Update to new upstream version 0.9.7
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
