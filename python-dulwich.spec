@@ -48,7 +48,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 # Remove extra copy of text docs
 #rm -rf docs/build/html/_sources
 #rm -f docs/build/html/{.buildinfo,objects.inv}
-#rm -rf %{buildroot}%{python_sitearch}/docs/tutorial/
+rm -rf %{buildroot}%{python_sitearch}/docs/tutorial/
 
 #%check
 #cd dulwich/tests
