@@ -38,10 +38,6 @@ rm -rf %{srcname}.egg-info
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
-
-%install
-%{__python} setup.py install --skip-build --root %{buildroot}
-CFLAGS="%{optflags}" %{__python} setup.py build
 pushd docs
 # Not using {smp_flags} as sphinx fails with it from time to time
 make html
