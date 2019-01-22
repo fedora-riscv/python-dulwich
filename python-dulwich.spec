@@ -58,7 +58,7 @@ protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
 
 %prep
-%autosetup -n %{srcname}-%{version}
+%autosetup -n %{srcname}-%{srcname}-%{version}
 
 %build
 %py2_build
