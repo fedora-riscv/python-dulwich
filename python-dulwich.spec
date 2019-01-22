@@ -5,13 +5,13 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.19.9
+Version:        0.19.10
 Release:        1%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
-Source0:        https://www.dulwich.io/releases/%{srcname}-%{version}.tar.gz
+Source0:        https://github.com/dulwich/dulwich/archive/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  python2-devel
@@ -99,6 +99,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Tue Jan 22 2019 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.10-1
+- Update to new upstream version 0.19.10
+
 * Sun Nov 18 2018 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.9-1
 - Update to new upstream version 0.19.9
 
