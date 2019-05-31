@@ -1,26 +1,30 @@
 %global srcname dulwich
-%global sum A python implementation of the Git file formats and protocols
 
 %global __provides_exclude_from ^(%{python2_sitearch}/.*\\.so)$
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
+%if 0%{?rhel} && 0%{?rhel} < 8
+%bcond_with python3
+%bcond_with tests
+%else
+%bcond_without python3
+%bcond_without tests
+%endif
+
+%if %{defined el6} || %{defined el7}
+%bcond_without python2
+%endif
+
 Name:           python-%{srcname}
 Version:        0.19.11
-Release:        1%{?dist}
-Summary:        %{sum}
+Release:        2%{?dist}
+Summary:        A Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
-Source0:        %pypi_source dulwich
+Source0:        https://github.com/dulwich/dulwich/archive/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  gcc
-BuildRequires:  python2-devel
-BuildRequires:  python3-devel
-BuildRequires:  python2-nose
-BuildRequires:  python2-sphinx
-BuildRequires:  python2-docutils
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-docutils
 
 %if (0%{?rhel} && 0%{?rhel} < 7) || (0%{?fedora} && 0%{?fedora} < 14)
 BuildRequires:  python-unittest2
@@ -35,10 +39,16 @@ Mrs. Git live in the Monty Python sketch.
 Summary:        Shared files for Dulwich
 
 %description -n %{srcname}-core
-Files to ensure functionality for both python2 and python3 packages of Dulwich.
+Files to ensure functionality for all packages of Dulwich.
 
+%if %{with python2}
 %package -n python2-%{srcname}
-Summary:        %{sum}
+Summary:        %{summary}
+
+BuildRequires:  python2-devel
+BuildRequires:  python2-docutils
+BuildRequires:  python2-nose
+BuildRequires:  python2-sphinx
 %{?python_provide:%python_provide python2-%{srcname}}
 Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
 
@@ -46,9 +56,15 @@ Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
 Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
+%endif
 
+%if %{with python3}
 %package -n python3-%{srcname}
-Summary:        %{sum}
+Summary:        %{summary}
+
+BuildRequires:  python3-devel
+BuildRequires:  python3-docutils
+BuildRequires:  python3-sphinx
 %{?python_provide:%python_provide python3-%{srcname}}
 Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
 
@@ -56,16 +72,16 @@ Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
 Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
+%endif
 
 %prep
 %autosetup -n %{srcname}-%{version}
-
-# Package provideing sphinx ext: sphinx_epytext not available
+# Package providing sphinx ext: sphinx_epytext not available
 sed -i '/sphinx_epytext/d' docs/conf.py
 
 %build
-%py2_build
-%py3_build
+%{?with_python2:%py2_build}
+%{?with_python3:%py3_build}
 pushd docs
 # Not using {smp_flags} as sphinx fails with it from time to time
 make html
@@ -75,11 +91,11 @@ rm -rf py3/html/.buildinfo
 popd
 
 %install
-%py2_install
-%py3_install
+%{?with_python2:%py2_install}
+%{?with_python3:%py3_install}
 # Remove extra copy of text docs
-rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
-rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
+%{?with_python2:rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/}
+%{?with_python3:rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/}
 
 #%check
 # FIXME test_non_ascii fails cause of unicode issue
@@ -91,17 +107,25 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 
+%if %{with python2}
 %files -n python2-%{srcname}
 %doc docs/build/html/
 %{python2_sitearch}/%{srcname}*
 %exclude %{python2_sitearch}/%{srcname}/tests*
+%endif
 
+%if %{with python3}
 %files -n python3-%{srcname}
 %doc docs/py3/html/
 %{python3_sitearch}/%{srcname}*
 %exclude %{python3_sitearch}/%{srcname}/tests*
+%endif
 
 %changelog
+* Fri May 31 2019 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.11-2
+- Revert Source0 to upstream location
+- Enable support for EPEL
+
 * Fri Mar 1 2019 Yatin Karel <ykarel@redhat.com> - 0.19.11-1
 - Update to new upstream version 0.19.11
 
