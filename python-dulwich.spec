@@ -17,7 +17,6 @@ BuildRequires:  gcc
 BuildRequires:  python2-devel
 BuildRequires:  python3-devel
 BuildRequires:  python2-nose
-BuildRequires:  python2-sphinx
 BuildRequires:  python2-docutils
 BuildRequires:  python3-sphinx
 BuildRequires:  python3-docutils
