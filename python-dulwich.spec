@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.19.11
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -101,6 +101,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Mon Jun 24 2019 Yatin Karel <ykarel@redhat.com> - 0.19.11-2
+- Rebuild after removing python2-sphinx
+
 * Fri Mar 1 2019 Yatin Karel <ykarel@redhat.com> - 0.19.11-1
 - Update to new upstream version 0.19.11
 
