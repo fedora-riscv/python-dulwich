@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.19.11
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -101,6 +101,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.19.11-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Mon Jun 24 2019 Yatin Karel <ykarel@redhat.com> - 0.19.11-2
 - Rebuild after removing python2-sphinx
 
