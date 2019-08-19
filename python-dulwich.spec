@@ -16,15 +16,30 @@
 %endif
 
 Name:           python-%{srcname}
+<<<<<<< HEAD
 Version:        0.19.11
 Release:        2%{?dist}
 Summary:        A Python implementation of the Git file formats and protocols
+=======
+Version:        0.19.12
+Release:        1%{?dist}
+Summary:        %{sum}
+>>>>>>> master
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
 Source0:        https://github.com/dulwich/dulwich/archive/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  gcc
+<<<<<<< HEAD
+=======
+BuildRequires:  python2-devel
+BuildRequires:  python3-devel
+BuildRequires:  python2-nose
+BuildRequires:  python2-docutils
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-docutils
+>>>>>>> master
 
 %if (0%{?rhel} && 0%{?rhel} < 7) || (0%{?fedora} && 0%{?fedora} < 14)
 BuildRequires:  python-unittest2
@@ -122,9 +137,17 @@ popd
 %endif
 
 %changelog
-* Fri May 31 2019 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.11-2
-- Revert Source0 to upstream location
-- Enable support for EPEL
+* Mon Aug 19 2019 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.12-1
+- Update to new upstream version 0.19.12
+
+* Sat Aug 17 2019 Miro Hrončok <mhroncok@redhat.com> - 0.19.11-4
+- Rebuilt for Python 3.8
+
+* Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.19.11-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
+* Mon Jun 24 2019 Yatin Karel <ykarel@redhat.com> - 0.19.11-2
+- Rebuild after removing python2-sphinx
 
 * Fri Mar 1 2019 Yatin Karel <ykarel@redhat.com> - 0.19.11-1
 - Update to new upstream version 0.19.11
