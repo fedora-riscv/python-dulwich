@@ -16,30 +16,15 @@
 %endif
 
 Name:           python-%{srcname}
-<<<<<<< HEAD
-Version:        0.19.11
-Release:        2%{?dist}
-Summary:        A Python implementation of the Git file formats and protocols
-=======
 Version:        0.19.12
 Release:        1%{?dist}
-Summary:        %{sum}
->>>>>>> master
+Summary:        A Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
 Source0:        https://github.com/dulwich/dulwich/archive/%{srcname}-%{version}.tar.gz
 
 BuildRequires:  gcc
-<<<<<<< HEAD
-=======
-BuildRequires:  python2-devel
-BuildRequires:  python3-devel
-BuildRequires:  python2-nose
-BuildRequires:  python2-docutils
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-docutils
->>>>>>> master
 
 %if (0%{?rhel} && 0%{?rhel} < 7) || (0%{?fedora} && 0%{?fedora} < 14)
 BuildRequires:  python-unittest2
@@ -139,6 +124,7 @@ popd
 %changelog
 * Mon Aug 19 2019 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.12-1
 - Update to new upstream version 0.19.12
+- Support for EPEL
 
 * Sat Aug 17 2019 Miro Hrončok <mhroncok@redhat.com> - 0.19.11-4
 - Rebuilt for Python 3.8
