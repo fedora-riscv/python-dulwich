@@ -6,7 +6,7 @@
 
 Name:           python-%{srcname}
 Version:        0.19.12
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        %{sum}
 
 License:        GPLv2+ or ASL 2.0
@@ -101,6 +101,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 0.19.12-3
+- Rebuilt for Python 3.8.0rc1 (#1748018)
+
 * Wed Aug 21 2019 Miro Hrončok <mhroncok@redhat.com> - 0.19.12-2
 - Rebuilt for Python 3.8
 
