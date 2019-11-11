@@ -1,55 +1,29 @@
 %global srcname dulwich
-%global sum A python implementation of the Git file formats and protocols
-
-%global __provides_exclude_from ^(%{python2_sitearch}/.*\\.so)$
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.19.12
-Release:        3%{?dist}
-Summary:        %{sum}
+Version:        0.19.13
+Release:        1%{?dist}
+Summary:        A Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
 Source0:        %pypi_source dulwich
 
 BuildRequires:  gcc
-BuildRequires:  python2-devel
-BuildRequires:  python3-devel
-BuildRequires:  python2-nose
-BuildRequires:  python2-docutils
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-docutils
-
-%if (0%{?rhel} && 0%{?rhel} < 7) || (0%{?fedora} && 0%{?fedora} < 14)
-BuildRequires:  python-unittest2
-%endif
 
 %description
 Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
 
-%package -n %{srcname}-core
-Summary:        Shared files for Dulwich
-
-%description -n %{srcname}-core
-Files to ensure functionality for both python2 and python3 packages of Dulwich.
-
-%package -n python2-%{srcname}
-Summary:        %{sum}
-%{?python_provide:%python_provide python2-%{srcname}}
-Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
-
-%description -n python2-%{srcname}
-Dulwich is a pure-Python implementation of the Git file formats and
-protocols. The project is named after the village in which Mr. and
-Mrs. Git live in the Monty Python sketch.
-
 %package -n python3-%{srcname}
-Summary:        %{sum}
+Summary:        %{summary}
+
+BuildRequires:  python3-devel
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-docutils
 %{?python_provide:%python_provide python3-%{srcname}}
-Requires:       %{srcname}-core%{?_isa} = %{version}-%{release}
 
 %description -n python3-%{srcname}
 Dulwich is a pure-Python implementation of the Git file formats and
@@ -58,12 +32,10 @@ Mrs. Git live in the Monty Python sketch.
 
 %prep
 %autosetup -n %{srcname}-%{version}
-
 # Package provideing sphinx ext: sphinx_epytext not available
 sed -i '/sphinx_epytext/d' docs/conf.py
 
 %build
-%py2_build
 %py3_build
 pushd docs
 # Not using {smp_flags} as sphinx fails with it from time to time
@@ -74,33 +46,28 @@ rm -rf py3/html/.buildinfo
 popd
 
 %install
-%py2_install
 %py3_install
 # Remove extra copy of text docs
-rm -rf %{buildroot}%{python2_sitearch}/docs/tutorial/
 rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 
 #%check
 # FIXME test_non_ascii fails cause of unicode issue
 #nosetests -e non_ascii -w dulwich/tests -v
 
-%files -n %{srcname}-core
+%files -n python3-%{srcname}
 %doc AUTHORS README.rst
+%doc docs/py3/html/
 %license COPYING
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
-
-%files -n python2-%{srcname}
-%doc docs/build/html/
-%{python2_sitearch}/%{srcname}*
-%exclude %{python2_sitearch}/%{srcname}/tests*
-
-%files -n python3-%{srcname}
-%doc docs/py3/html/
 %{python3_sitearch}/%{srcname}*
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
 %changelog
+* Mon Nov 11 2019 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.13-1
+- Remove Python 2 (rhbz#1761783)
+- Update to new upstream version 0.19.13
+
 * Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 0.19.12-3
 - Rebuilt for Python 3.8.0rc1 (#1748018)
 
