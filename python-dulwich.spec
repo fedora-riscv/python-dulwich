@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.19.15
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
@@ -21,8 +21,7 @@ Mrs. Git live in the Monty Python sketch.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-docutils
+
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -30,20 +29,23 @@ Dulwich is a pure-Python implementation of the Git file formats and
 protocols. The project is named after the village in which Mr. and
 Mrs. Git live in the Monty Python sketch.
 
+%package -n %{name}-doc
+Summary:        The %{name} documentation
+
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-docutils
+BuildRequires:  python3-sphinx-epytext
+
+%description -n %{name}-doc
+Documentation for %{name}.
+
 %prep
 %autosetup -n %{srcname}-%{version}
-# Package provideing sphinx ext: sphinx_epytext not available
-sed -i '/sphinx_epytext/d' docs/conf.py
 
 %build
 %py3_build
-pushd docs
-# Not using {smp_flags} as sphinx fails with it from time to time
-make html
-rm -rf build/html/{.buildinfo,doctrees}
-sphinx-build-3 -b html -d py3/doctrees . py3/html
-rm -rf py3/html/.buildinfo
-popd
+PYTHONPATH=${PWD} sphinx-build-3 docs html
+rm -rf html/.{doctrees,buildinfo}
 
 %install
 %py3_install
@@ -56,14 +58,21 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 
 %files -n python3-%{srcname}
 %doc AUTHORS README.rst
-%doc docs/py3/html/
 %license COPYING
 %{_bindir}/dul-*
 %{_bindir}/%{srcname}
 %{python3_sitearch}/%{srcname}*
 %exclude %{python3_sitearch}/%{srcname}/tests*
 
+%files -n %{name}-doc
+%doc AUTHORS README.rst
+%license COPYING
+%doc html
+
 %changelog
+* Fri Feb 28 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.15-2
+- Move docs to subpackage
+
 * Mon Jan 27 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.15-1
 - Update to new upstream version 0.19.15
 
