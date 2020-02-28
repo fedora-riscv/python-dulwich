@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.19.15
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
@@ -70,8 +70,11 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
-* Fri Feb 28 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.15-2
+* Fri Feb 28 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.15-3
 - Move docs to subpackage
+
+* Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.19.15-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
 * Mon Jan 27 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.15-1
 - Update to new upstream version 0.19.15
