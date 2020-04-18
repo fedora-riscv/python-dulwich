@@ -2,9 +2,9 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.19.15
-Release:        3%{?dist}
-Summary:        A Python implementation of the Git file formats and protocols
+Version:        0.19.16
+Release:        1%{?dist}
+Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Sat Apr 18 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.16-1
+- Update to latest upstream release 0.19.16 (rhbz#1825352)
+
 * Fri Feb 28 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.15-3
 - Move docs to subpackage
 
