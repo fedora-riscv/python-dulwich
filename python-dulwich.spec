@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.19.16
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Sat May 23 2020 Miro Hrončok <mhroncok@redhat.com> - 0.19.16-2
+- Rebuilt for Python 3.9
+
 * Sat Apr 18 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.16-1
 - Update to latest upstream release 0.19.16 (rhbz#1825352)
 
