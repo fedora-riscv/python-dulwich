@@ -2,8 +2,8 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.19.16
-Release:        2%{?dist}
+Version:        0.20.2
+Release:        1%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Mon Jun 01 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.2-1
+- Update to latest upstream release 0.20.2 (rhbz#1842651)
+
 * Sat May 23 2020 Miro Hrončok <mhroncok@redhat.com> - 0.19.16-2
 - Rebuilt for Python 3.9
 
