@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.20.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
@@ -21,7 +21,7 @@ Mrs. Git live in the Monty Python sketch.
 Summary:        %{summary}
 
 BuildRequires:  python3-devel
-
+BuildRequires:  python3-setuptools
 %{?python_provide:%python_provide python3-%{srcname}}
 
 %description -n python3-%{srcname}
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Fri Jun 26 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.5-2
+- Add python3-setuptools as BR
+
 * Mon Jun 22 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.5-1
 - Update to latest upstream release 0.20.5 (rhbz#1846933)
 
