@@ -2,7 +2,7 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.20.6
+Version:        0.20.11
 Release:        1%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
@@ -70,8 +70,11 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Fri Oct 30 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.11-1
+- Update to latest upstream release 0.20.11 (#1893055)
+
 * Mon Aug 31 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.6-1
-- Update to latest upstream release 0.20.6 (rhbz#1873748)
+- Update to latest upstream release 0.20.6 (#1873748)
 
 * Wed Jul 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.20.5-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
@@ -80,22 +83,22 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 - Add python3-setuptools as BR
 
 * Mon Jun 22 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.5-1
-- Update to latest upstream release 0.20.5 (rhbz#1846933)
+- Update to latest upstream release 0.20.5 (#1846933)
 
 * Mon Jun 22 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.4-1
-- Update to latest upstream release 0.20.4 (rhbz#1846933)
+- Update to latest upstream release 0.20.4 (#1846933)
 
 * Mon Jun 15 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.3-1
-- Update to latest upstream release 0.20.3 (rhbz#1846933)
+- Update to latest upstream release 0.20.3 (#1846933)
 
 * Mon Jun 01 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.2-1
-- Update to latest upstream release 0.20.2 (rhbz#1842651)
+- Update to latest upstream release 0.20.2 (#1842651)
 
 * Sat May 23 2020 Miro Hrončok <mhroncok@redhat.com> - 0.19.16-2
 - Rebuilt for Python 3.9
 
 * Sat Apr 18 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.16-1
-- Update to latest upstream release 0.19.16 (rhbz#1825352)
+- Update to latest upstream release 0.19.16 (#1825352)
 
 * Fri Feb 28 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.15-3
 - Move docs to subpackage
@@ -110,7 +113,7 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 - Update to new upstream version 0.19.14
 
 * Mon Nov 11 2019 Fabian Affolter <mail@fabian-affolter.ch> - 0.19.13-1
-- Remove Python 2 (rhbz#1761783)
+- Remove Python 2 (#1761783)
 - Update to new upstream version 0.19.13
 
 * Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 0.19.12-3
@@ -167,7 +170,7 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 - Fixes CVE-2017-16228
 
 * Fri Oct 13 2017 Fabian Affolter <mail@fabian-affolter.ch> - 0.18.4-1
-- Update to new upstream version 0.16.0 (rhbz#*1405983)
+- Update to new upstream version 0.16.0 (#*1405983)
 
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.16.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
@@ -194,7 +197,7 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 - Generate documentation for python3
 - Split binaries in subpackage to avoid duplication
 - Execute tests
-- Fix rhbz#1304050
+- Fix #1304050
 
 * Tue Feb 02 2016 Fabian Affolter <mail@fabian-affolter.ch> - 0.12.0-1
 - Update to new upstream version 0.12.0
@@ -213,7 +216,7 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
 * Mon Mar 23 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.10.0-1
-- Fix for CVE-2014-9706 (rhbz#1204889, rhbz#1204890, and rhbz#1204891)
+- Fix for CVE-2014-9706 (#1204889, #1204890, and #1204891)
 - Update to new upstream version 0.10.0
 
 * Mon Mar 23 2015 Fabian Affolter <mail@fabian-affolter.ch> - 0.9.9-1
