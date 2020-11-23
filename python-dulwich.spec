@@ -2,13 +2,13 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.20.11
+Version:        0.20.13
 Release:        1%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
-Source0:        %pypi_source dulwich
+Source0:        https://github.com/dulwich/dulwich/archive/dulwich-%{version}.tar.gz
 
 BuildRequires:  gcc
 
@@ -70,6 +70,10 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Mon Nov 23 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.13-1
+- CLI part was fixed by upstream (#1866463)
+- Update to latest upstream release 0.20.13 (#1900385)
+
 * Fri Oct 30 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.11-1
 - Update to latest upstream release 0.20.11 (#1893055)
 
