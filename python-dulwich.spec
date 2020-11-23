@@ -40,7 +40,7 @@ BuildRequires:  python3-sphinx-epytext
 Documentation for %{name}.
 
 %prep
-%autosetup -n %{srcname}-%{version}
+%autosetup -n dulwich-%{srcname}-%{version}
 
 %build
 %py3_build
