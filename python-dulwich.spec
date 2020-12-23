@@ -2,7 +2,7 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.20.14
+Version:        0.20.15
 Release:        1%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
@@ -70,7 +70,10 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
-* Mon Nov 23 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.14-1
+* Wed Dec 23 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.15-1
+- Update to latest upstream release 0.20.15 (#1910183)
+
+* Fri Nov 27 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.14-1
 - Update to latest upstream release 0.20.14 (#1902106)
 
 * Mon Nov 23 2020 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.13-1
