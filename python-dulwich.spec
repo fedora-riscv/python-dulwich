@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.20.23
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Thu Jun 03 2021 Python Maint <python-maint@redhat.com> - 0.20.23-2
+- Rebuilt for Python 3.10
+
 * Tue May 25 2021 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.23-1
 - Update to latest upstream version 0.20.23 (#1925135)
 
