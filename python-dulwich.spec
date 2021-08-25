@@ -2,8 +2,8 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.20.23
-Release:        3%{?dist}
+Version:        0.20.24
+Release:        1%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Wed Aug 25 2021 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.24-1
+- Update to latest upstream release 0.20.24 (rhbz#1925135)
+
 * Tue Jul 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.20.23-3
 - Second attempt - Rebuilt for
   https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
