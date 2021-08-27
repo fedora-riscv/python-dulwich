@@ -2,13 +2,13 @@
 %global __provides_exclude_from ^(%{python3_sitearch}/.*\\.so)$
 
 Name:           python-%{srcname}
-Version:        0.20.24
+Version:        0.20.25
 Release:        1%{?dist}
 Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
 URL:            https://www.dulwich.io/
-Source0:        https://github.com/dulwich/dulwich/archive/dulwich-%{version}.tar.gz
+Source0:        %{pypi_source}
 
 BuildRequires:  gcc
 
@@ -40,7 +40,7 @@ BuildRequires:  python3-sphinx-epytext
 Documentation for %{name}.
 
 %prep
-%autosetup -n dulwich-%{srcname}-%{version}
+%autosetup -n %{srcname}-%{version}
 
 %build
 %py3_build
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 %doc html
 
 %changelog
+* Fri Aug 27 2021 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.25-1
+- Update to latest upstream release 0.20.25 (closes rhbz#1923878)
+
 * Wed Aug 25 2021 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.24-1
 - Update to latest upstream release 0.20.24 (rhbz#1925135)
 
