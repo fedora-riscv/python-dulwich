@@ -71,7 +71,7 @@ rm -rf %{buildroot}%{python3_sitearch}/docs/tutorial/
 
 %changelog
 * Fri Aug 27 2021 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.25-1
-- Update to latest upstream release 0.20.25 (closes rhbz#1923878)
+- Update to latest upstream release 0.20.25 (closes rhbz#1925135)
 
 * Wed Aug 25 2021 Fabian Affolter <mail@fabian-affolter.ch> - 0.20.24-1
 - Update to latest upstream release 0.20.24 (rhbz#1925135)
