@@ -3,7 +3,7 @@
 
 Name:           python-%{srcname}
 Version:        0.20.44
-Release:        %autorelease
+Release:        %autorelease -e 0
 Summary:        Python implementation of the Git file formats and protocols
 
 License:        GPLv2+ or ASL 2.0
